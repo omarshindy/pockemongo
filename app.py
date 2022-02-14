@@ -1,11 +1,8 @@
 import pandas as pd
 import os
-import dash
-from dash import html
 import plotly.graph_objects as go
-from dash import dcc
+from dash import dcc, Input, Output, Dash, html, dash_table
 import plotly.express as px
-from dash.dependencies import Input, Output
 
 
 url = "https://gist.githubusercontent.com/simsketch/1a029a8d7fca1e4c142cbfd043a68f19/raw/bd584ee6c307cc9fab5ba38916e98a85de9c2ba7/pokemon.csv"
@@ -30,8 +27,7 @@ df = df.sort_values(by='Ranks', ascending=False)#sorting the rows in descending 
 
 # # print(strong.head())
 
-
-app = dash.Dash(__name__)
+app = Dash(__name__)
 server = app.server
 # df = px.data.stocks()
 
@@ -44,10 +40,10 @@ app.layout = html.Div(id = 'parent', children = [
         options = test,
         value = 'Grass'),
         dcc.Graph(id = 'bar-chart'),
-        dash.dash_table.DataTable(
+        dash_table.DataTable(
             df.head().to_dict('records')
         ),
-        dash.dash_table.DataTable(
+        dash_table.DataTable(
             df.tail().to_dict('records')
         )
 
