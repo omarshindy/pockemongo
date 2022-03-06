@@ -1,3 +1,4 @@
+import dash
 from dash import dcc, Input, Output, Dash, html, dash_table
 import plotly.graph_objects as go
 import plotly.express as px
@@ -108,7 +109,7 @@ dashtable_2 = dash_table.DataTable(
 
 ########Dash App Layout##########################
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
